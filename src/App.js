@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Post from "./Post";
 
 function App() {
+  const [posts, setPosts] = useState([
+    {
+      username: "Jake",
+      caption: "Love pugs!",
+      imageUrl:
+        "https://www.thesprucepets.com/thmb/lqDqQz52oagIxea9ptgY1xzXQW4=/2121x1414/filters:fill(auto,1)/Pug-GettyImages-1140575734-5262294c43ff4ec993395d780fb0ee16.jpg",
+    },
+
+    {
+      username: "Sally",
+      caption: "Corgis are the best!",
+      imageUrl:
+        "https://cdn.buttercms.com/ZF8K2t8hT8OoNR3W42bX",
+    },
+  ]);
   return (
     <div className="app">
       <div className="app__header">
@@ -14,9 +29,11 @@ function App() {
       </div>
       <h1>Hello, welcome to Instagram Clone Built with React</h1>
 
-      <Post></Post>
-      {/* Posts */}
-      {/* Posts */}
+     {
+       posts.map(post => (
+         <Post username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
+       ))
+     }
     </div>
   );
 }
