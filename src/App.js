@@ -65,6 +65,9 @@ function App() {
           className="app_headerImage"
         />
       </div>
+
+      <Button></Button>
+
       <h1>Hello, welcome to Instagram Clone Built with React</h1>
 
       {posts.map(({id, post}) => (
