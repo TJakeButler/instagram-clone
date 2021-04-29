@@ -17,7 +17,7 @@ function Post({ username, caption, imageUrl }) {
         <h3>{username}</h3>
       </div>
 
-      <img className="post__image" src={imageUrl}></img>
+      <img className="post__image" src={imageUrl} alt=""></img>
 
       <h4 className="post__text">
         <strong>{username}</strong> {caption}

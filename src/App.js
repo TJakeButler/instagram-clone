@@ -50,6 +50,7 @@ function App() {
         console.log("This is auth user >>>", authUser)
         setUser(authUser)
         
+
       } else {
       // user has logged out
       setUser(null)
@@ -60,7 +61,6 @@ function App() {
       // perform some cleanup actions
       unsubscribe();
     }    
-
   }, [user, username])
 
   // USEEFFECT Runs a piece of code base on a specific condition
@@ -77,9 +77,7 @@ function App() {
     });
   }, []);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+
 
   const signUp = (event) => {
     event.preventDefault()
@@ -101,7 +99,8 @@ function App() {
         <div style={modalStyle} className={classes.paper}>
           <form className="app__signup">
             <center>
-              <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"></img>
+              <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+              alt=""></img>
             </center>
             <Input
               type="text"
@@ -127,13 +126,13 @@ function App() {
       </Modal>
 
       <div className="app__header">
-        <center>
+        
           <img
             className="app_headerImage"
             src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
             alt=""
           />
-        </center>
+        
       </div>
 
       <Button onClick={() => setOpen(true)}>Sign Up</Button>
