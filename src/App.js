@@ -19,6 +19,7 @@ function getModalStyle() {
   };
 }
 
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
@@ -66,7 +67,7 @@ function App() {
   // USEEFFECT Runs a piece of code base on a specific condition
   useEffect(() => {
     // this is where the code runs
-    db.collection("posts").onSnapshot((snapshot) => {
+    db.collection("posts").orderBy('timestamp', 'desc').onSnapshot((snapshot) => {
       // every time a new post is added, this code fires
       setPosts(
         snapshot.docs.map((doc) => ({

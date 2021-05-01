@@ -47,6 +47,10 @@ const handleUpload = () => {
                     imageUrl: url,
                     username: username
                 })
+
+                setProgress(0)
+                setCaption("")
+                setImage(null)
             })
         }
     )
@@ -60,6 +64,10 @@ const handleUpload = () => {
             {/* File Picker */}
             {/* Post Button */}
 
+
+
+
+            <progress max="100" value={progress}></progress>    
             <input 
             type="text" 
             placeholder="Enter a Caption..." 
