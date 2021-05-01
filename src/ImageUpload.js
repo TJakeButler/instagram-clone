@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Button } from "@material-ui/core";
 import firebase from "firebase";
 import {storage, db} from './firebase'
+import './ImageUpload.css'
 
 function ImageUpload({username}) {
 const [image, setImage] = useState(null)
@@ -57,17 +58,9 @@ const handleUpload = () => {
 }
 
     return (
-        <div>
-            <h1>Image uploader</h1>
-            {/* I want to have the following */}
-            {/* Caption input */}
-            {/* File Picker */}
-            {/* Post Button */}
-
-
-
-
-            <progress max="100" value={progress}></progress>    
+        <div className='imageupload'>
+            
+            <progress className='imageupload__progress' max="100" value={progress}></progress>    
             <input 
             type="text" 
             placeholder="Enter a Caption..." 

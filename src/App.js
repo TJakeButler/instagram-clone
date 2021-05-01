@@ -106,15 +106,7 @@ function App() {
   return (
     <div className="app">
 
-      {user?.displayName ? (
-        <div>
-          <ImageUpload username={user.displayName} />
-        </div>
-      ) : (
-        <center>
-          <h3>Sorry you need to login to upload</h3>
-        </center>
-      )}
+      
       
       
 
@@ -211,6 +203,16 @@ function App() {
           imageUrl={post.imageUrl}
         />
       ))}
+
+{user?.displayName ? (
+        <div>
+          <ImageUpload username={user.displayName} />
+        </div>
+      ) : (
+        <center>
+          <h3>Sorry you need to login to upload</h3>
+        </center>
+      )}
     </div>
   );
 }
