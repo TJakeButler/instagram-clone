@@ -6,7 +6,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import { Button } from "@material-ui/core";
 import { Input } from "@material-ui/core";
-import ImageUpload from './ImageUpload'
+import ImageUpload from "./ImageUpload";
+
+
 
 function getModalStyle() {
   const top = 50;
@@ -18,7 +20,6 @@ function getModalStyle() {
     transform: `translate(-${top}%, -${left}%)`,
   };
 }
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -67,15 +68,17 @@ function App() {
   // USEEFFECT Runs a piece of code base on a specific condition
   useEffect(() => {
     // this is where the code runs
-    db.collection("posts").orderBy('timestamp', 'desc').onSnapshot((snapshot) => {
-      // every time a new post is added, this code fires
-      setPosts(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          post: doc.data(),
-        }))
-      );
-    });
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        // every time a new post is added, this code fires
+        setPosts(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            post: doc.data(),
+          }))
+        );
+      });
   }, []);
 
   const signUp = (event) => {
@@ -90,26 +93,21 @@ function App() {
       })
       .catch((error) => alert(error.message));
 
-      setOpen(false)
+    setOpen(false);
   };
 
   const signIn = (event) => {
     event.preventDefault();
 
     auth
-    .signInWithEmailAndPassword(email, password)
-    .catch((error) => alert(error.message))
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => alert(error.message));
 
-    setOpenSignIn(false)
-  }
+    setOpenSignIn(false);
+  };
 
   return (
     <div className="app">
-
-      
-      
-      
-
       <Modal open={open} onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
           <form className="app__signup">
@@ -144,13 +142,7 @@ function App() {
         </div>
       </Modal>
 
-
-
-
-
-      <Modal 
-      open={openSignIn} 
-      onClose={() => setOpenSignIn(false)}>
+      <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
         <div style={modalStyle} className={classes.paper}>
           <form className="app__signup">
             <center>
@@ -159,7 +151,7 @@ function App() {
                 alt=""
               ></img>
             </center>
-            
+
             <Input
               type="text"
               placeholder="email"
@@ -172,7 +164,9 @@ function App() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button type="submit" onClick={signIn}>Sign In</Button>
+            <Button type="submit" onClick={signIn}>
+              Sign In
+            </Button>
           </form>
         </div>
       </Modal>
@@ -184,29 +178,31 @@ function App() {
           alt=""
         />
 
-{user ? (
-        <Button onClick={() => auth.signOut()}>Logout</Button>
-      ) : (
-        <div className="app__loginContainer">
-        <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
-        <Button onClick={() => setOpen(true)}>Sign Up</Button>
-        </div>
-      )}
+        {user ? (
+          <Button onClick={() => auth.signOut()}>Logout</Button>
+        ) : (
+          <div className="app__loginContainer">
+            <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
+            <Button onClick={() => setOpen(true)}>Sign Up</Button>
+          </div>
+        )}
       </div>
+
+      <div className="app__posts">
+
+        {posts.map(({ id, post }) => (
+          <Post
+            key={id}
+            username={post.username}
+            caption={post.caption}
+            imageUrl={post.imageUrl}
+          />
+        ))}
+      </div>
+
       
 
-      <h1>Hello, welcome to Instagram Clone Built with React</h1>
-
-      {posts.map(({ id, post }) => (
-        <Post
-          key={id}
-          username={post.username}
-          caption={post.caption}
-          imageUrl={post.imageUrl}
-        />
-      ))}
-
-{user?.displayName ? (
+      {user?.displayName ? (
         <div>
           <ImageUpload username={user.displayName} />
         </div>

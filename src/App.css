@@ -7,6 +7,10 @@
   
 }
 
+.app__posts {
+  padding: 20px;
+}
+
 .app__header {
   background-color: white;
   padding: 20px;
