@@ -6,12 +6,7 @@ function Post({postId, username, caption, imageUrl }) {
   
 const [comments, setComments] = useState([])
 
-useEffect(() => {
-  effect
-  return () => {
-    cleanup
-  }
-}, [input])
+
 
 
 
