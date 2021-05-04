@@ -67,8 +67,8 @@ const postComment = (event) => {
           ))}
         </div>
 
-
-      <form className="post__commentBox">
+      {user && (
+        <form className="post__commentBox">
         <input
         className="post__input"
         type="text"
@@ -85,6 +85,9 @@ const postComment = (event) => {
         onClick={postComment}
         >Post</button>
       </form>
+      )}
+
+      
     </div>
   );
 }
